@@ -20,6 +20,7 @@ var Home = React.createClass({
     }.bind(this));
   },
   render: function () {
+    console.log(this.state.panels);
     return this.state.isLoading === true
         ? <Loading />
       : <div>

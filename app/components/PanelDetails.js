@@ -21,11 +21,11 @@ function StatusButton(props) {
     : <div>
     <strong>This panel has been reported as faulty.</strong>
       <div className="container-fluid" style={{paddingTop: 25}}>
-        <button className="btn btn-lg btn-success col-sm-5 col-sm-offset-1">
+        <button
+          className="btn btn-lg btn-success col-sm-6 col-sm-offset-3"
+          status="working"
+          onClick={props.onSubmit}>
          Issues Resolved
-        </button>
-        <button className="btn btn-lg btn-default col-sm-5 col-sm-offset-1">
-          Requires further inspection
         </button>
 
 </div>
@@ -49,13 +49,23 @@ var PanelDetails = React.createClass({
       })
     }.bind(this));
   },
+  onHandleUpdatePanel: function (e) {
+    e.preventDefault();
+    this.setState({
+      isLoading: false,
+      panel: Object.assign({}, this.state.panel, {status: true})
+    });
+    console.log('afer', this.state);
+    // dbHelper.updatePanelStatus(this.state.panel);
+
+  },
   render: function () {
     return this.state.isLoading === true
       ? <Loading />
       : <div>
       <h1>
         <PanelStatus status={this.state.panel.status}/>
-        Panel {this.state.panel.id}
+        Panel {this.state.panel.id.substring(this.state.panel.id.length - 4)}
       </h1>
       <div className='well'>
         <GoogleMap lat={this.state.panel.lat} lon={this.state.panel.lon}/>
@@ -68,7 +78,11 @@ var PanelDetails = React.createClass({
           <dd>{this.state.panel.lat}, {this.state.panel.lon}</dd>
         </dl>
 
-        <StatusButton panel={this.state.panel.id} status={this.state.panel.status}/>
+        <StatusButton
+          panel={this.state.panel.id}
+          status={this.state.panel.status}
+          onSubmit={this.onHandleUpdatePanel}
+        />
 
       </div>
 

@@ -12,7 +12,7 @@ function SiteTableRow(props) {
       <td>
         <PanelStatus status={props.status}/>
       </td>
-      <td>{props.id}</td>
+      <td>{props.id.substring(props.id.length - 4)}</td>
       <td>{props.updated.toDateString()}</td>
 
       <td>

@@ -12,13 +12,11 @@ function SiteTableRow(props) {
       <td>
         <PanelStatus status={props.status}/>
       </td>
-      <td>{props.id.substring(props.id.length - 4)}</td>
       <td>{props.updated.toDateString()}</td>
+      <td>{props.id.substring(props.id.length - 4)}</td>
 
       <td>
-        <button className='btn btn-sm btn-default'>
-          <Link to={'/panel/' + encodeURIComponent(props.id)}>Inspect</Link>
-        </button>
+        <Link className='btn btn-md btn-default' to={'/panel/' + encodeURIComponent(props.id)}>Inspect</Link>
       </td>
     </tr>
   )
@@ -32,16 +30,16 @@ SiteTableRow.propTypes = {
 
 function SiteTable(props) {
   return (
-    <table className='table table-striped '>
+    <table className='table table-striped'>
       <thead><tr>
-        <th>Status</th>
-        <th>ID</th>
-        <th>Last Checked</th>
-        <th>Actions</th>
+        <th className="col-sm-3">Status</th>
+        <th className="col-sm-3">Last Checked</th>
+        <th className="col-sm-3">ID</th>
+        <th className="col-sm-3">Actions</th>
       </tr></thead>
       <tbody>
         {props.panels.map(function(panel){
-          return <SiteTableRow key={panel.id} status={panel.status} id={panel.id} updated={panel.updated} />;
+          return <SiteTableRow key={panel._id} status={panel.status} id={panel._id} updated={panel.updated} />;
         })}
       </tbody>
     </table>

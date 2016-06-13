@@ -1,8 +1,7 @@
 var React = require('react');
 var dbHelper = require('../util/dbHelper');
 var PanelStatus = require('./PanelStatus');
-var Loading = require('./Loading')
-var API_KEY = 'AIzaSyCu0F5KogTDVTJEKqJLQK5bQfPe83GDn94';
+var Loading = require('./Loading');
 
 function GoogleMap(props) {
   return (
@@ -22,7 +21,7 @@ function StatusButton(props) {
     <strong>This panel has been reported as faulty.</strong>
       <div className="container-fluid" style={{paddingTop: 25}}>
         <button
-          className="btn btn-lg btn-success col-sm-6 col-sm-offset-3"
+          className="btn btn-lg btn-danger col-sm-6 col-sm-offset-3"
           status="working"
           onClick={props.onSubmit}>
          Issues Resolved
@@ -30,7 +29,28 @@ function StatusButton(props) {
 
 </div>
   </div>
+}
 
+function PanelSummary(props) {
+  return (
+    <div className='well'>
+      <GoogleMap lat={props.panel.lat} lon={props.panel.lon}/>
+
+      <dl className='dl-horizontal'>
+        <dt>Last Updated</dt>
+        <dd>{props.panel.updated.toDateString()}</dd>
+
+        <dt>Location</dt>
+        <dd>{props.panel.lat}, {props.panel.lon}</dd>
+      </dl>
+
+      <StatusButton
+        panel={props.panel._id}
+        status={props.panel.status}
+        onSubmit={props.onUpdatePanel}
+      />
+    </div>
+  )
 }
 
 var PanelDetails = React.createClass({
@@ -41,7 +61,7 @@ var PanelDetails = React.createClass({
     }
   },
   componentDidMount: function () {
-    var dataSite = dbHelper.getPanelData(this.props.params.id);
+    var dataSite = dbHelper.getPanelData(this.props.params._id);
     dataSite.then(function (panel){
       this.setState({
         isLoading: false,
@@ -51,40 +71,26 @@ var PanelDetails = React.createClass({
   },
   onHandleUpdatePanel: function (e) {
     e.preventDefault();
+    var newPanel =  Object.assign({}, this.state.panel, {status: true});
+    dbHelper.updatePanelStatus(newPanel);
     this.setState({
       isLoading: false,
-      panel: Object.assign({}, this.state.panel, {status: true})
+      panel: newPanel
     });
-    console.log('afer', this.state);
-    // dbHelper.updatePanelStatus(this.state.panel);
-
   },
+
   render: function () {
     return this.state.isLoading === true
       ? <Loading />
       : <div>
-      <h1>
-        <PanelStatus status={this.state.panel.status}/>
-        Panel {this.state.panel.id.substring(this.state.panel.id.length - 4)}
+      <h1 className="clearfix row">
+        <span className="col-sm-10">Panel {this.state.panel._id.substring(this.state.panel._id.length - 4)}</span>
+        <span className="col-sm-2 text-right">
+          <PanelStatus status={this.state.panel.status}/>
+        </span>
       </h1>
-      <div className='well'>
-        <GoogleMap lat={this.state.panel.lat} lon={this.state.panel.lon}/>
 
-        <dl className='dl-horizontal'>
-          <dt>Last Updated</dt>
-          <dd>{this.state.panel.updated.toDateString()}</dd>
-
-          <dt>Location</dt>
-          <dd>{this.state.panel.lat}, {this.state.panel.lon}</dd>
-        </dl>
-
-        <StatusButton
-          panel={this.state.panel.id}
-          status={this.state.panel.status}
-          onSubmit={this.onHandleUpdatePanel}
-        />
-
-      </div>
+      <PanelSummary panel={this.state.panel} onUpdatePanel={this.onHandleUpdatePanel}/>
 
     </div>
   }

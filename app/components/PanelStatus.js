@@ -7,7 +7,7 @@ function PanelStatus(props) {
   var statusName = props.status === false ? 'Broken' : 'Working';
 
   return (
-    <strong className={'btn btn-sm btn-' + statusClass}>{statusName}</strong>
+    <strong style={{'cursor': 'default'}} className={'btn btn-md col-sm-12 btn-' + statusClass}>{statusName}</strong>
   )
 }
 

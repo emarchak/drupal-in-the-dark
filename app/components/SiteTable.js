@@ -17,7 +17,7 @@ function SiteTableRow(props) {
 
       <td>
         <button className='btn btn-sm btn-default'>
-          <Link to={'/panel/' + encodeURIComponent(props.id)}>Edit</Link>
+          <Link to={'/panel/' + encodeURIComponent(props.id)}>Inspect</Link>
         </button>
       </td>
     </tr>

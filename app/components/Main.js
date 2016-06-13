@@ -12,12 +12,15 @@ var Main = React.createClass({
                 <img alt='Brand' src='https://www.drupal.org/files/issues/favicon-32x32.png'/>
               </Link>
             </div>
-            <div className='collapse navbar-collapse'> <p className='navbar-text navbar-right'>Signed in as Mark Otto</p> </div>
+            <div className='collapse navbar-collapse'>
+              <ul className='nav navbar-nav'>
+                <li><Link to='/'>Home</Link></li>
+              </ul>
+                <p className='navbar-text navbar-right'>Signed in as Mark Otto</p> </div>
           </div>
         </nav>
         <main className='container'>
           <div className='col-md-8 col-md-offset-2'>
-
              {this.props.children}
             </div>
         </main>

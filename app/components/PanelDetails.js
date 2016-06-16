@@ -2,6 +2,7 @@ var React = require('react');
 var dbHelper = require('../util/dbHelper');
 var PanelStatus = require('./PanelStatus');
 var Loading = require('./Loading');
+var API_KEY = 'AIzaSyCu0F5KogTDVTJEKqJLQK5bQfPe83GDn94';
 
 function GoogleMap(props) {
   return (
@@ -15,20 +16,30 @@ function GoogleMap(props) {
 }
 
 function StatusButton(props) {
-  return props.status === true
-    ? <p>Everything appears to be working here. Good job!</p>
-    : <div>
-    <strong>This panel has been reported as faulty.</strong>
-      <div className="container-fluid" style={{paddingTop: 25}}>
-        <button
-          className="btn btn-lg btn-danger col-sm-6 col-sm-offset-3"
-          status="working"
-          onClick={props.onSubmit}>
+ if (props.status === true) {
+   return <div><p>Everything appears to be working here. Good job!</p>
+     <div className="container-fluid" style={{paddingTop: 25}}><button
+   className="btn btn-lg btn-default col-sm-6 col-sm-offset-3"
+   status="working"
+   onClick={props.onSubmitIsBroken}>
+   Report Broken
+   </button></div></div>
+  }
+  else {
+   return <div>
+     <p><strong>This panel has been reported as faulty.</strong></p>
+     <div className="container-fluid" style={{paddingTop: 25}}>
+       <button
+         className="btn btn-lg btn-danger col-sm-6 col-sm-offset-3"
+         status="working"
+         onClick={props.onSubmitIsWorking}>
          Issues Resolved
-        </button>
+       </button>
 
-</div>
-  </div>
+     </div>
+   </div>
+ }
+
 }
 
 function PanelSummary(props) {
@@ -47,7 +58,8 @@ function PanelSummary(props) {
       <StatusButton
         panel={props.panel._id}
         status={props.panel.status}
-        onSubmit={props.onUpdatePanel}
+        onSubmitIsBroken={props.onUpdatePanel}
+        onSubmitIsWorking={props.onUpdatePanel}
       />
     </div>
   )
@@ -61,22 +73,22 @@ var PanelDetails = React.createClass({
     }
   },
   componentDidMount: function () {
-    var dataSite = dbHelper.getPanelData(this.props.params._id);
-    dataSite.then(function (panel){
+    dbHelper.getPanelData(this.props.params.id)
+    .then(function (panel){
       this.setState({
         isLoading: false,
-        panel: panel
+        panel: dbHelper.docToJSON(panel)
       })
     }.bind(this));
   },
   onHandleUpdatePanel: function (e) {
     e.preventDefault();
-    var newPanel =  Object.assign({}, this.state.panel, {status: true});
-    dbHelper.updatePanelStatus(newPanel);
+    dbHelper.updatePanelStatus(this.state.panel.id);
+    this.state.panel.status = !this.state.panel.status;
     this.setState({
       isLoading: false,
-      panel: newPanel
-    });
+      panel: this.state.panel
+    })
   },
 
   render: function () {
@@ -84,7 +96,7 @@ var PanelDetails = React.createClass({
       ? <Loading />
       : <div>
       <h1 className="clearfix row">
-        <span className="col-sm-10">Panel {this.state.panel._id.substring(this.state.panel._id.length - 4)}</span>
+        <span className="col-sm-10">{this.state.panel.title}</span>
         <span className="col-sm-2 text-right">
           <PanelStatus status={this.state.panel.status}/>
         </span>

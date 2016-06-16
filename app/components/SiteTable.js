@@ -4,28 +4,26 @@ var Link = require('react-router').Link;
 var PanelStatus = require('./PanelStatus');
 
 function SiteTableRow(props) {
-  var statusClass = props.status === false ? 'danger' : 'success';
-  var statusName = props.status === false ? 'Broken' : 'Working';
+  var statusClass = props.panel.status === false ? 'danger' : 'success';
+  var statusName = props.panel.status === false ? 'Broken' : 'Working';
 
   return (
     <tr>
       <td>
-        <PanelStatus status={props.status}/>
+        <PanelStatus status={props.panel.status}/>
       </td>
-      <td>{props.updated.toDateString()}</td>
-      <td>{props.id.substring(props.id.length - 4)}</td>
+      <td>{props.panel.updated.toDateString()}</td>
+      <td>{props.panel.title}</td>
 
       <td>
-        <Link className='btn btn-md btn-default' to={'/panel/' + encodeURIComponent(props.id)}>Inspect</Link>
+        <Link className='btn btn-md btn-default' to={'/panel/' + encodeURIComponent(props.panel.id)}>Inspect</Link>
       </td>
     </tr>
   )
 }
 
 SiteTableRow.propTypes = {
-  status : PropTypes.bool.isRequired,
-  id: PropTypes.string.isRequired,
-  updated: PropTypes.instanceOf(Date).isRequired
+  panel : PropTypes.object.isRequired
 }
 
 function SiteTable(props) {
@@ -39,7 +37,7 @@ function SiteTable(props) {
       </tr></thead>
       <tbody>
         {props.panels.map(function(panel){
-          return <SiteTableRow key={panel._id} status={panel.status} id={panel._id} updated={panel.updated} />;
+          return <SiteTableRow key={panel.id} panel={panel}/>;
         })}
       </tbody>
     </table>

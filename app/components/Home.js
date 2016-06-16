@@ -11,16 +11,20 @@ var Home = React.createClass({
     }
   },
   componentDidMount: function () {
-    var dataSites = dbHelper.getSiteData();
-    dataSites.then(function (panels){
-      this.setState({
-        isLoading: false,
-        panels: panels
+    dbHelper.getSiteData()
+      .then(function(docs) {
+        return docs.map(function (doc){
+          return dbHelper.docToJSON(doc.doc);
+        })
       })
-    }.bind(this));
+      .then(function (panels){
+        this.setState({
+          isLoading: false,
+          panels: panels
+        })
+      }.bind(this));
   },
   render: function () {
-    console.log(this.state.panels);
     return this.state.isLoading === true
         ? <Loading />
       : <div>

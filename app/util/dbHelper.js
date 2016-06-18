@@ -1,17 +1,15 @@
 var PouchDB = require('pouchdb');
-var localDB = new PouchDB('drupal8_live');
-var remoteDB = new PouchDB('http://127.0.0.1:5984/drupal');
-var drupalDB = new PouchDB('http://admin:admin@agent008.local/relaxed/live')
 window.PouchDB = PouchDB;
+var localDB = new PouchDB('drupal8_pouch');
+var drupalDB = new PouchDB('http://admin:admin@agent008.local/relaxed/live');
+
 
 var dbHelpers = {
   getSiteData: function () {
-    // localDB.sync(drupalDB, {retry: true});
-    var replicateResponse = PouchDB.replicate(remoteDB, localDB);
-    localDB.sync(remoteDB).on('complete', function () {
-      console.log('sync success')
+    localDB.sync(drupalDB, {retry: true, live: true}).on('complete', function (e) {
+      console.log('sync success', e)
     }).on('error', function (err) {
-      // boo, we hit an error!
+      console.log('Failed to sync', err);
     });
     return localDB.allDocs({include_docs: true})
       .then(function(response){
@@ -34,10 +32,10 @@ var dbHelpers = {
   getPanelData: function (panelID) {
     // localDB.sync(drupalDB, {retry: true, live: true});
     // var replicateResponse = PouchDB.replicate(remoteDB, localDB);
-    localDB.sync(remoteDB).on('complete', function () {
+    localDB.sync(drupalDB).on('complete', function () {
       console.log('sync success')
     }).on('error', function (err) {
-      // boo, we hit an error!
+      console.log('Failed to sync', err);
     });
 
     return localDB.get(panelID)
@@ -56,7 +54,7 @@ var dbHelpers = {
         return localDB.put(panelOld);
       })
       .then(function(putResponse) {
-        return localDB.sync(remoteDB).on('complete', function (e) {
+        return localDB.sync(drupalDB).on('complete', function (e) {
           console.log(e);
           console.log('sync success')
           return true;

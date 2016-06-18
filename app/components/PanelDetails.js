@@ -81,6 +81,7 @@ var PanelDetails = React.createClass({
       })
     }.bind(this));
   },
+
   onHandleUpdatePanel: function (e) {
     e.preventDefault();
     dbHelper.updatePanelStatus(this.state.panel.id);

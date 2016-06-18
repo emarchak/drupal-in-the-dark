@@ -11,6 +11,7 @@ var dbHelpers = {
     }).on('error', function (err) {
       console.log('Failed to sync', err);
     });
+
     return localDB.allDocs({include_docs: true})
       .then(function(response){
         return response.rows;
@@ -29,9 +30,8 @@ var dbHelpers = {
         console.warn('Failed to getSiteData', err)
       });
   },
+
   getPanelData: function (panelID) {
-    // localDB.sync(drupalDB, {retry: true, live: true});
-    // var replicateResponse = PouchDB.replicate(remoteDB, localDB);
     localDB.sync(drupalDB).on('complete', function () {
       console.log('sync success')
     }).on('error', function (err) {
@@ -46,6 +46,7 @@ var dbHelpers = {
         console.warn('Failed to getPanelData', err)
       });
   },
+
   updatePanelStatus: function (panelID) {
     localDB.get(panelID)
       .then(function(panelOld){
@@ -66,6 +67,7 @@ var dbHelpers = {
         console.warn('Failed to updatePanelStatus', err);
       })
   },
+
   docToJSON: function (doc) {
     return {
       id: doc._id,

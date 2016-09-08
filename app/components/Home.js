@@ -5,6 +5,7 @@ var SiteTable = require('./SiteTable');
 
 var Home = React.createClass({
   getInitialState: function () {
+    this.getPanels();
     return {
       isLoading: true,
       panels: [],
@@ -24,8 +25,6 @@ var Home = React.createClass({
     }.bind(this));
   },
   componentDidMount: function () {
-    this.getPanels();
-
     dbHelper.localDB.sync(dbHelper.drupalDB, {
       live: true,
       retry: true,

@@ -1,11 +1,11 @@
 var PouchDB = require('pouchdb');
 window.PouchDB = PouchDB;
 var localDB = new PouchDB('drupal8_pouch');
-var drupalDB = new PouchDB('http://admin:admin@react-drupal.local/relaxed/live');
+var drupalDB = new PouchDB('http://erin:testing@react-drupal.local/relaxed/live');
 
 var dbHelpers = {
-  localDB: new PouchDB('drupal8_pouch'),
-  drupalDB: new PouchDB('http://admin:admin@react-drupal.local/relaxed/live'),
+  localDB: localDB,
+  drupalDB: drupalDB,
   getSiteData: function () {
     localDB.sync(drupalDB, {retry: true, live: true}).on('complete', function (e) {
       console.log('sync success', e)

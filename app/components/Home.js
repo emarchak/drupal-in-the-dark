@@ -10,19 +10,29 @@ var Home = React.createClass({
       panels: [],
     }
   },
-  componentDidMount: function () {
-    dbHelper.getSiteData()
-      .then(function(docs) {
-        return docs.map(function (doc){
-          return dbHelper.docToJSON(doc.doc);
-        })
+  getPanels: function() {
+    dbHelper.getSiteDocs().then(function (docs) {
+      return docs.map(function (doc) {
+        return dbHelper.docToJSON(doc.doc);
       })
-      .then(function (panels){
-        this.setState({
-          isLoading: false,
-          panels: panels
-        })
-      }.bind(this));
+    })
+    .then(function (panels) {
+      this.setState({
+        isLoading: false,
+        panels: panels
+      })
+    }.bind(this));
+  },
+  componentDidMount: function () {
+    this.getPanels();
+
+    dbHelper.localDB.sync(dbHelper.drupalDB, {
+      live: true,
+      retry: true,
+      include_docs: true
+    }).on('change',  function () {
+      this.getPanels();
+    }.bind(this))
   },
   render: function () {
     return this.state.isLoading === true

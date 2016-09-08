@@ -14,13 +14,14 @@ var styles = {
     position: 'absolute',
     width: '100%',
     marginTop: '30px',
+    color: '#ccc',
   }
 }
 
 function Loading() {
     return (
-      <div class="col-md-12 text-center">
-        <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+      <div className="col-md-12 text-center">
+        <i className="fa fa-refresh fa-spin fa-5x fa-fw"></i>
       </div>
     )
   };

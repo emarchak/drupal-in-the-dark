@@ -1,0 +1,189 @@
+/**
+ * Myplanet theme for reveal.js presentations
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+
+// Include theme-specific fonts
+@import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic|Montserrat:400,700|Droid+Sans+Mono); 
+
+// Brand colors --------------------------------
+$mp_pink:   #ea3d67;
+$mp_teal:   #58c0a2;
+$mp_purple: #5F5CB1;
+$mp_black:  #333;
+$mp_orange: #f05a28;
+
+// Override theme settings (see ../template/settings.scss)
+$mainFont: 'Droid Serif', serif;
+$mainColor: $mp_black;
+$headingFont: 'Montserrat', serif;
+$headingColor: $mp_black;
+$headingTextShadow: none;
+$headingTextTransform: none;
+$backgroundColor: #fff;
+$linkColor: $mp_black;
+$linkColorHover: darken( $linkColor, 20% );
+$selectionBackgroundColor: rgba(0, 0, 0, 0.99);
+
+// Theme template ------------------------------
+@import "../template/theme";
+
+// Myplanet theme ------------------------------
+body {
+  background-image: url('source/img/mp_logo_og.png');
+  background-size: 100px;
+  background-repeat: no-repeat;
+  background-position: 95% 95%;
+  .reveal {
+    h1, h2, h3, h4, h5, h6 {
+      font-family: $headingFont;
+      text-shadow: none;
+      line-height: 1.25;
+      font-weight: 400; 
+    }
+    h1 { font-size: 3.27em; line-height:1; font-weight: 700;}
+    h2 { font-size: 1.61em; }
+    h3 { font-size: 1em; font-weight: 700; }
+    h4 { font-size: 1em; font-style: italic; }
+    a,
+    a:not(.image) {
+      text-decoration: underline;
+      &:hover, &:active {
+        text-decoration: none;
+      }
+    }
+    img {
+      width: 40%;
+    }
+    .lite {
+      opacity: 0.25;
+    }
+    .visually-hidden {
+      opacity: 0;
+    }
+    code {
+      font-family: 'Droid Sans Mono', monospace;
+    }
+    
+    blockquote {
+      background-color: none;
+      box-shadow: none;
+      font-family: $headingFont;
+      text-shadow: none;
+      line-height: 1.25;
+      font-weight: 400; 
+      font-style: normal;
+    }
+    
+    img,
+    .nude {
+      background-color: transparent !important;
+      box-shadow: 0 0 0 transparent !important;
+      border-width: 0!important;
+    }
+    
+    .left {
+      float: left;
+    }
+    
+    .right {
+      float: right;
+    }
+    
+    // flip controls to the left.
+    .controls {
+      right: auto;
+      left: 0;
+    }
+  }
+}
+
+
+// Colored slides ------------------------
+.title-slide body,
+.pink-slide body,
+.teal-slide body,
+.purple-slide body,
+.orange-slide body,
+.black-slide body {
+  background-image: url('source/img/mp_logo_wt.png');
+  background-color: $mp_black;
+  .reveal {
+    color: $backgroundColor;
+    h1, h2, h3, h4, h5, h6 {
+      color: $backgroundColor;
+    }
+    a,
+    a:not(.image) {
+      color: $backgroundColor;
+      &:focus, &:hover {
+        color: darken( $backgroundColor, 20% );
+      }
+    }
+  }
+}
+.nologo-slide body { background-image: none !important;    }
+.pink-slide body   { background-color: $mp_pink;     }
+.teal-slide body   { background-color: $mp_teal;     }
+.purple-slide body { background-color: $mp_purple;   }
+.orange-slide body { background-color: $mp_orange;   }
+
+.black-slide body {
+  .reveal .controls .navigate-left,
+  .reveal .controls .navigate-left.enabled {
+  	border-right-color: $backgroundColor;
+  }
+  
+  .reveal .controls .navigate-right,
+  .reveal .controls .navigate-right.enabled {
+    border-left-color: $backgroundColor;
+  }
+  
+  .reveal .controls .navigate-up,
+  .reveal .controls .navigate-up.enabled {
+  	border-bottom-color: $backgroundColor;
+  }
+  
+  .reveal .controls .navigate-down,
+  .reveal .controls .navigate-down.enabled {
+  	border-top-color: $backgroundColor;
+  }
+  
+  .reveal .controls .navigate-left.enabled:hover {
+  	border-right-color: darken( $backgroundColor, 20% );
+  }
+  
+  .reveal .controls .navigate-right.enabled:hover {
+  	border-left-color: darken( $backgroundColor, 20% );
+  }
+  
+  .reveal .controls .navigate-up.enabled:hover {
+  	border-bottom-color: darken( $backgroundColor, 20% );
+  }
+  
+  .reveal .controls .navigate-down.enabled:hover {
+  	border-top-color: darken( $backgroundColor, 20% );
+  } 
+}
+
+.title-slide body { 
+  background-image: url('source/img/title-bg.jpg'); 
+  background-size: cover;
+  background-position: center center;
+  background-color: $mp_orange;
+  
+  .slide-background video {
+    top: 50%;
+    left: 50%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+  }
+}

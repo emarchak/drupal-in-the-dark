@@ -1,0 +1,488 @@
+/**
+ * Myplanet theme for reveal.js presentations
+ */
+@import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic|Montserrat:400,700|Droid+Sans+Mono);
+/*********************************************
+ * GLOBAL STYLES
+ *********************************************/
+body {
+  background: #fff;
+  background-color: #fff; }
+
+.reveal {
+  font-family: "Droid Serif", serif;
+  font-size: 36px;
+  font-weight: normal;
+  color: #333; }
+
+::selection {
+  color: #fff;
+  background: rgba(0, 0, 0, 0.99);
+  text-shadow: none; }
+
+.reveal .slides > section,
+.reveal .slides > section > section {
+  line-height: 1.3;
+  font-weight: inherit; }
+
+/*********************************************
+ * HEADERS
+ *********************************************/
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  margin: 0 0 20px 0;
+  color: #333;
+  font-family: "Montserrat", serif;
+  font-weight: normal;
+  line-height: 1.2;
+  letter-spacing: normal;
+  text-transform: none;
+  text-shadow: none;
+  text-align: left;
+  width: 100%;
+  word-wrap: break-word; }
+
+.reveal h1 {
+  font-size: 3.77em; }
+
+.reveal h2 {
+  font-size: 2.11em; }
+
+.reveal h3 {
+  font-size: 1.55em; }
+
+.reveal h4 {
+  font-size: 1em; }
+
+.reveal h1 {
+  text-align: center;
+  text-shadow: none; }
+
+.reveal .title-slide h1,
+.reveal .title-slide h2 {
+  text-align: center; }
+
+/*********************************************
+ * OTHER
+ *********************************************/
+.reveal p {
+  margin: 20px 0;
+  line-height: 1.3; }
+
+/* Ensure certain elements are never larger than the slide itself */
+.reveal img,
+.reveal video,
+.reveal iframe {
+  max-width: 95%;
+  max-height: 95%; }
+
+.reveal strong,
+.reveal b {
+  font-weight: bold; }
+
+.reveal em {
+  font-style: italic; }
+
+.reveal ol,
+.reveal dl,
+.reveal ul {
+  display: inline-block;
+  text-align: left;
+  width: 80%;
+  margin: 0 0 0 1em;
+  padding-left: 0; }
+
+.reveal ol {
+  list-style-type: decimal; }
+
+.reveal ul {
+  list-style-type: disc; }
+
+.reveal ul ul {
+  list-style-type: square; }
+
+.reveal ul ul ul {
+  list-style-type: circle; }
+
+.reveal ul ul,
+.reveal ul ol,
+.reveal ol ol,
+.reveal ol ul {
+  display: block;
+  margin-left: 40px; }
+
+.reveal dt {
+  font-weight: bold; }
+
+.reveal dd {
+  margin-left: 40px; }
+
+.reveal q,
+.reveal blockquote {
+  quotes: none; }
+
+.reveal blockquote {
+  display: block;
+  position: relative;
+  width: 70%;
+  margin: 20px auto;
+  padding: 5px;
+  font-style: italic;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2); }
+
+.reveal blockquote p:first-child,
+.reveal blockquote p:last-child {
+  display: inline-block; }
+
+.reveal q {
+  font-style: italic; }
+
+.reveal pre {
+  display: block;
+  position: relative;
+  width: 90%;
+  margin: 20px auto;
+  text-align: left;
+  font-size: 0.55em;
+  font-family: monospace;
+  line-height: 1.2em;
+  word-wrap: break-word;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3); }
+
+.reveal code {
+  font-family: monospace; }
+
+.reveal pre code {
+  display: block;
+  padding: 5px;
+  overflow: auto;
+  max-height: 400px;
+  word-wrap: normal; }
+
+.reveal table {
+  margin: auto;
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+.reveal table th {
+  font-weight: bold; }
+
+.reveal table th,
+.reveal table td {
+  text-align: left;
+  padding: 0.2em 0.5em 0.2em 0.5em;
+  border-bottom: 1px solid; }
+
+.reveal table th[align="center"],
+.reveal table td[align="center"] {
+  text-align: center; }
+
+.reveal table th[align="right"],
+.reveal table td[align="right"] {
+  text-align: right; }
+
+.reveal table tr:last-child td {
+  border-bottom: none; }
+
+.reveal sup {
+  vertical-align: super; }
+
+.reveal sub {
+  vertical-align: sub; }
+
+.reveal small {
+  display: inline-block;
+  font-size: 0.6em;
+  line-height: 1.2em;
+  vertical-align: top; }
+
+.reveal small * {
+  vertical-align: top; }
+
+/*********************************************
+ * LINKS
+ *********************************************/
+.reveal a {
+  color: #333;
+  text-decoration: none;
+  -webkit-transition: color .15s ease;
+  -moz-transition: color .15s ease;
+  transition: color .15s ease; }
+
+.reveal a:hover {
+  color: black;
+  text-shadow: none;
+  border: none; }
+
+.reveal .roll span:after {
+  color: #fff;
+  background: #0d0d0d; }
+
+/*********************************************
+ * IMAGES
+ *********************************************/
+.reveal section img {
+  margin: 15px 0px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 4px solid #333;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); }
+
+.reveal section img.plain {
+  border: 0;
+  box-shadow: none; }
+
+.reveal a img {
+  -webkit-transition: all .15s linear;
+  -moz-transition: all .15s linear;
+  transition: all .15s linear; }
+
+.reveal a:hover img {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #333;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.55); }
+
+/*********************************************
+ * NAVIGATION CONTROLS
+ *********************************************/
+.reveal .controls .navigate-left,
+.reveal .controls .navigate-left.enabled {
+  border-right-color: #333; }
+
+.reveal .controls .navigate-right,
+.reveal .controls .navigate-right.enabled {
+  border-left-color: #333; }
+
+.reveal .controls .navigate-up,
+.reveal .controls .navigate-up.enabled {
+  border-bottom-color: #333; }
+
+.reveal .controls .navigate-down,
+.reveal .controls .navigate-down.enabled {
+  border-top-color: #333; }
+
+.reveal .controls .navigate-left.enabled:hover {
+  border-right-color: black; }
+
+.reveal .controls .navigate-right.enabled:hover {
+  border-left-color: black; }
+
+.reveal .controls .navigate-up.enabled:hover {
+  border-bottom-color: black; }
+
+.reveal .controls .navigate-down.enabled:hover {
+  border-top-color: black; }
+
+/*********************************************
+ * PROGRESS BAR
+ *********************************************/
+.reveal .progress {
+  background: rgba(0, 0, 0, 0.2); }
+
+.reveal .progress span {
+  background: #333;
+  -webkit-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  -moz-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985); }
+
+body {
+  background-image: url("source/img/mp_logo_og.png");
+  background-size: 100px;
+  background-repeat: no-repeat;
+  background-position: 95% 95%; }
+  body .reveal h1, body .reveal h2, body .reveal h3, body .reveal h4, body .reveal h5, body .reveal h6 {
+    font-family: "Montserrat", serif;
+    text-shadow: none;
+    line-height: 1.25;
+    font-weight: 400; }
+  body .reveal h1 {
+    font-size: 3.27em;
+    line-height: 1;
+    font-weight: 700; }
+  body .reveal h2 {
+    font-size: 1.61em; }
+  body .reveal h3 {
+    font-size: 1em;
+    font-weight: 700; }
+  body .reveal h4 {
+    font-size: 1em;
+    font-style: italic; }
+  body .reveal a,
+  body .reveal a:not(.image) {
+    text-decoration: underline; }
+    body .reveal a:hover, body .reveal a:active,
+    body .reveal a:not(.image):hover,
+    body .reveal a:not(.image):active {
+      text-decoration: none; }
+  body .reveal img {
+    width: 40%; }
+  body .reveal .lite {
+    opacity: 0.25; }
+  body .reveal .visually-hidden {
+    opacity: 0; }
+  body .reveal code {
+    font-family: 'Droid Sans Mono', monospace; }
+  body .reveal blockquote {
+    background-color: none;
+    box-shadow: none;
+    font-family: "Montserrat", serif;
+    text-shadow: none;
+    line-height: 1.25;
+    font-weight: 400;
+    font-style: normal; }
+  body .reveal img,
+  body .reveal .nude {
+    background-color: transparent !important;
+    box-shadow: 0 0 0 transparent !important;
+    border-width: 0 !important; }
+  body .reveal .left {
+    float: left; }
+  body .reveal .right {
+    float: right; }
+  body .reveal .controls {
+    right: auto;
+    left: 0; }
+
+.title-slide body,
+.pink-slide body,
+.teal-slide body,
+.purple-slide body,
+.orange-slide body,
+.black-slide body {
+  background-image: url("source/img/mp_logo_wt.png");
+  background-color: #333; }
+  .title-slide body .reveal,
+  .pink-slide body .reveal,
+  .teal-slide body .reveal,
+  .purple-slide body .reveal,
+  .orange-slide body .reveal,
+  .black-slide body .reveal {
+    color: #fff; }
+    .title-slide body .reveal h1, .title-slide body .reveal h2, .title-slide body .reveal h3, .title-slide body .reveal h4, .title-slide body .reveal h5, .title-slide body .reveal h6,
+    .pink-slide body .reveal h1,
+    .pink-slide body .reveal h2,
+    .pink-slide body .reveal h3,
+    .pink-slide body .reveal h4,
+    .pink-slide body .reveal h5,
+    .pink-slide body .reveal h6,
+    .teal-slide body .reveal h1,
+    .teal-slide body .reveal h2,
+    .teal-slide body .reveal h3,
+    .teal-slide body .reveal h4,
+    .teal-slide body .reveal h5,
+    .teal-slide body .reveal h6,
+    .purple-slide body .reveal h1,
+    .purple-slide body .reveal h2,
+    .purple-slide body .reveal h3,
+    .purple-slide body .reveal h4,
+    .purple-slide body .reveal h5,
+    .purple-slide body .reveal h6,
+    .orange-slide body .reveal h1,
+    .orange-slide body .reveal h2,
+    .orange-slide body .reveal h3,
+    .orange-slide body .reveal h4,
+    .orange-slide body .reveal h5,
+    .orange-slide body .reveal h6,
+    .black-slide body .reveal h1,
+    .black-slide body .reveal h2,
+    .black-slide body .reveal h3,
+    .black-slide body .reveal h4,
+    .black-slide body .reveal h5,
+    .black-slide body .reveal h6 {
+      color: #fff; }
+    .title-slide body .reveal a,
+    .title-slide body .reveal a:not(.image),
+    .pink-slide body .reveal a,
+    .pink-slide body .reveal a:not(.image),
+    .teal-slide body .reveal a,
+    .teal-slide body .reveal a:not(.image),
+    .purple-slide body .reveal a,
+    .purple-slide body .reveal a:not(.image),
+    .orange-slide body .reveal a,
+    .orange-slide body .reveal a:not(.image),
+    .black-slide body .reveal a,
+    .black-slide body .reveal a:not(.image) {
+      color: #fff; }
+      .title-slide body .reveal a:focus, .title-slide body .reveal a:hover,
+      .title-slide body .reveal a:not(.image):focus,
+      .title-slide body .reveal a:not(.image):hover,
+      .pink-slide body .reveal a:focus,
+      .pink-slide body .reveal a:hover,
+      .pink-slide body .reveal a:not(.image):focus,
+      .pink-slide body .reveal a:not(.image):hover,
+      .teal-slide body .reveal a:focus,
+      .teal-slide body .reveal a:hover,
+      .teal-slide body .reveal a:not(.image):focus,
+      .teal-slide body .reveal a:not(.image):hover,
+      .purple-slide body .reveal a:focus,
+      .purple-slide body .reveal a:hover,
+      .purple-slide body .reveal a:not(.image):focus,
+      .purple-slide body .reveal a:not(.image):hover,
+      .orange-slide body .reveal a:focus,
+      .orange-slide body .reveal a:hover,
+      .orange-slide body .reveal a:not(.image):focus,
+      .orange-slide body .reveal a:not(.image):hover,
+      .black-slide body .reveal a:focus,
+      .black-slide body .reveal a:hover,
+      .black-slide body .reveal a:not(.image):focus,
+      .black-slide body .reveal a:not(.image):hover {
+        color: #cccccc; }
+
+.nologo-slide body {
+  background-image: none !important; }
+
+.pink-slide body {
+  background-color: #ea3d67; }
+
+.teal-slide body {
+  background-color: #58c0a2; }
+
+.purple-slide body {
+  background-color: #5F5CB1; }
+
+.orange-slide body {
+  background-color: #f05a28; }
+
+.black-slide body .reveal .controls .navigate-left,
+.black-slide body .reveal .controls .navigate-left.enabled {
+  border-right-color: #fff; }
+
+.black-slide body .reveal .controls .navigate-right,
+.black-slide body .reveal .controls .navigate-right.enabled {
+  border-left-color: #fff; }
+
+.black-slide body .reveal .controls .navigate-up,
+.black-slide body .reveal .controls .navigate-up.enabled {
+  border-bottom-color: #fff; }
+
+.black-slide body .reveal .controls .navigate-down,
+.black-slide body .reveal .controls .navigate-down.enabled {
+  border-top-color: #fff; }
+
+.black-slide body .reveal .controls .navigate-left.enabled:hover {
+  border-right-color: #cccccc; }
+
+.black-slide body .reveal .controls .navigate-right.enabled:hover {
+  border-left-color: #cccccc; }
+
+.black-slide body .reveal .controls .navigate-up.enabled:hover {
+  border-bottom-color: #cccccc; }
+
+.black-slide body .reveal .controls .navigate-down.enabled:hover {
+  border-top-color: #cccccc; }
+
+.title-slide body {
+  background-image: url("source/img/title-bg.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-color: #f05a28; }
+  .title-slide body .slide-background video {
+    top: 50%;
+    left: 50%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%); }
